@@ -2,7 +2,7 @@
 layout: page
 title: Search
 permalink: /search/
-description: Search all writing on SG's Log.
+description: Search all writing on SGLogs.
 ---
 
 <div id="search-container">

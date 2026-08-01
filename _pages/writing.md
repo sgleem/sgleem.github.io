@@ -5,7 +5,7 @@ permalink: /writing/
 description: Research essays, engineering notes, paper notes, and personal essays.
 ---
 
-<p class="page-lede">Research essays, engineering notes, paper notes, and personal essays on building intelligent systems.</p>
+<p class="page-lede">Research essays, engineering notes, paper notes, and personal essays on playing with intelligent systems.</p>
 
 <nav class="category-filter" aria-label="Writing categories">
   <a href="{{ site.baseurl }}/writing/">All writing</a>

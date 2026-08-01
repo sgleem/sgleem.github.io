@@ -3,13 +3,13 @@
 #
 
 # Name of your site (displayed in the header)
-name: "SG's Log"
+name: "SGLogs"
 
 # Name of the author
-author: Seong-Gyun Leem
+author: Seong-Gyun (Seong) Leem
 
 # Short bio or description (displayed in the header)
-description: Research, engineering, and personal essays on building intelligent systems.
+description: Research, engineering, and personal essays on playing with intelligent systems.
 
 #
 # Flags below are optional

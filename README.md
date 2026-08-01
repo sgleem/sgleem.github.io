@@ -1,5 +1,4 @@
-# SG's Log
-
+# SGLogs
 The personal research and writing site of Seong-Gyun Leem. It is a text-first Jekyll site for research essays, engineering notes, paper notes, and personal essays.
 
 ## Local development
