@@ -1,0 +1,10 @@
+- name: Model evaluation
+  description: Methods and benchmarks for understanding whether intelligent systems improve real work.
+- name: Real-world data
+  description: Data quality, distribution shift, and the practical constraints behind reliable machine learning.
+- name: AI agents
+  description: Tool use, interaction, steerability, and evaluation for systems that act over multiple steps.
+- name: Speech and multimodal systems
+  description: Learning from speech and other modalities in systems designed for real users.
+- name: Research practice
+  description: The habits, decisions, and engineering work that make research useful outside a paper.

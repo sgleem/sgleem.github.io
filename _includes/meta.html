@@ -2,24 +2,21 @@
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
-{% if page.excerpt %}
-<meta property="og:description" content="{{ page.excerpt| strip_html }}" />
-{% else if page.description %}
-<meta property="og:description" content="{{ page.description }}" />
-{% else %}
-<meta property="og:description" content="{{ site.description }}" />
-{% endif %}
-<meta name="author" content="{{ site.name }}" />
+{% assign meta_description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | strip %}
+<meta name="description" content="{{ meta_description }}" />
+<meta name="author" content="{{ site.author }}" />
+<meta property="og:description" content="{{ meta_description }}" />
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+<meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+<meta property="og:site_name" content="{{ site.name }}" />
+<meta name="twitter:card" content="summary_large_image" />
 
 {% if page.title %}
 <meta property="og:title" content="{{ page.title }}" />
-<meta property="twitter:title" content="{{ page.title }}" />
+<meta name="twitter:title" content="{{ page.title }}" />
 {% endif %}
 
 {% if page.image %}
 <meta property="og:image" content="{{ site.url }}{{ page.image }}"/>
-<meta property="twitter:image" content="{{ site.url }}{{ page.image }}"/>
-{% else %}
-<meta property="og:image" content="{{ site.url }}{{ site.avatar }}"/>
-<meta property="twitter:image" content="{{ site.url }}{{ site.avatar }}"/>
+<meta name="twitter:image" content="{{ site.url }}{{ page.image }}"/>
 {% endif %}

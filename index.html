@@ -2,48 +2,76 @@
 layout: default
 ---
 
-<div class="posts">
-  {% for post in paginator.posts %}
-    <article class="post">
-      <a href="{{ site.baseurl }}{{ post.url }}">
-        <h1>{{ post.title }}</h1>
+<div class="home container">
+  {% assign profile = site.data.profile %}
+  <section class="home-intro">
+    <p class="eyebrow">{{ profile.role }}</p>
+    <h1>{{ profile.name }}</h1>
+    <p class="home-lede">{{ profile.intro }}</p>
+    <p class="home-links"><a href="{{ site.baseurl }}/writing/">Read the writing</a> <span aria-hidden="true">·</span> <a href="{{ site.baseurl }}/research/">Explore the research</a></p>
+  </section>
 
-        <div>
-          <p class="post_date">{{ post.date | date: "%B %e, %Y" }}</p>
-        </div>
-      </a>
-      <div class="entry">
-        {{ post.excerpt }}
+  {% assign featured_posts = site.posts | where: "featured", true %}
+  {% if featured_posts.size > 0 %}
+    <section class="home-section" aria-labelledby="featured-heading">
+      <div class="section-heading">
+        <h2 id="featured-heading">Featured essays</h2>
+        <a href="{{ site.baseurl }}/writing/">All writing</a>
       </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-
-  <!-- pagination -->
-  {% if paginator.total_pages > 1 %}
-  <div class="pagination">
-    {% if paginator.previous_page %}
-      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-    {% else %}
-      <span>&laquo; Prev</span>
-    {% endif %}
-
-    {% for page in (1..paginator.total_pages) %}
-      {% if page == paginator.page %}
-        <span class="webjeda">{{ page }}</span>
-      {% elsif page == 1 %}
-        <a href="{{ '/' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-      {% else %}
-        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-      {% endif %}
-    {% endfor %}
-
-    {% if paginator.next_page %}
-      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
-    {% else %}
-      <span>Next &raquo;</span>
-    {% endif %}
-  </div>
+      <div class="post-list featured-list">
+        {% for post in featured_posts limit: 3 %}
+          {% include post-card.html post=post %}
+        {% endfor %}
+      </div>
+    </section>
   {% endif %}
+
+  <section class="home-section" aria-labelledby="recent-heading">
+    <div class="section-heading">
+      <h2 id="recent-heading">Recent writing</h2>
+      <a href="{{ site.baseurl }}/archive/">Archive</a>
+    </div>
+    {% assign recent_posts = site.posts | where_exp: "post", "post.featured != true" %}
+    {% if recent_posts.size > 0 %}
+      <div class="post-list">
+        {% for post in recent_posts limit: 5 %}
+          {% include post-card.html post=post %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty-state">The first essays and notes will appear here.</p>
+    {% endif %}
+  </section>
+
+  <section class="home-section" aria-labelledby="areas-heading">
+    <div class="section-heading">
+      <h2 id="areas-heading">Research areas</h2>
+      <a href="{{ site.baseurl }}/research/">Research overview</a>
+    </div>
+    <div class="research-grid">
+      {% for area in site.data.research_areas %}
+        <a class="research-area" href="{{ site.baseurl }}/research/#{{ area.name | slugify }}">
+          <h3>{{ area.name }}</h3>
+          <p>{{ area.description }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  {% assign selected_publications = site.data.publications | where: "selected", true %}
+  <section class="home-section" aria-labelledby="publications-heading">
+    <div class="section-heading">
+      <h2 id="publications-heading">Selected publications</h2>
+      <a href="{{ site.baseurl }}/publications/">All publications</a>
+    </div>
+    {% if selected_publications.size > 0 %}
+      <div class="publication-list">
+        {% for publication in selected_publications limit: 3 %}
+          {% include publication-item.html publication=publication %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="empty-state">Selected publications will appear here.</p>
+    {% endif %}
+  </section>
 </div>

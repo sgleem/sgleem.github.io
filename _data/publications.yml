@@ -1,0 +1,12 @@
+# Add entries with this shape:
+# - title: "Paper title"
+#   authors:
+#     - "Author A"
+#     - "Seong-Gyun Leem"
+#   venue: "Conference or journal"
+#   year: 2025
+#   paper_url: ""
+#   code_url: ""
+#   project_url: ""
+#   selected: true
+[]

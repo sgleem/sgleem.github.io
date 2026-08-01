@@ -1,0 +1,5 @@
+{% assign reading_content = include.content | default: include.post.content %}
+{% assign word_count = reading_content | number_of_words %}
+{% assign minutes = word_count | divided_by: 220 %}
+{% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
+{{ minutes }} min read

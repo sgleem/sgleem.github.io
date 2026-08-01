@@ -2,28 +2,22 @@
 layout: page
 title: About
 permalink: /about/
+description: About Seong-Gyun Leem.
 ---
 
-[Reverie](https://github.com/amitmerchant1990/reverie) is a Jekyll theme which is simple and opinionated. It's actually a fork of [jekyll-now](https://github.com/barryclark/jekyll-now) with some additional features and personal touches which I've implemented to suit my needs for [my blog](https://www.amitmerchant.com).
+<p class="page-lede">{{ site.data.profile.role }}</p>
 
-This is a plug-and-play Jekyll theme which you can use on GitHub Pages without even setting up a local environment.
+<p>I write about the technical and human questions that arise while building intelligent systems. My interests include model evaluation, real-world data, AI agents, speech and multimodal systems, engineering practice, and research careers.</p>
 
-## Features
+<p>This site is a place for durable research essays, practical notes, paper discussions, and personal essays. Detailed employment and publication history can be found in the <a href="{{ site.baseurl }}/publications/">publication archive</a> and linked CV when those materials are added.</p>
 
-- Command-line free fork-first workflow, using GitHub.com to create, customize and post to your blog
-- Fully responsive and mobile optimized base theme
-- Sass/Coffeescript support using Jekyll 2.0
-- Free hosting on your GitHub Pages user site
-- All the SEO goodies comes in-built
-- Markdown blogging
-- Syntax highlighting using Pygments
-    - [Dracula syntax theme](https://draculatheme.com/) included
-- Disqus commenting
-- Google Analytics integration
-- Fuzzy search across blog posts
-- Pagination of posts works out-of-the-box.
-- Categorize posts out-of-the box
-- RSS Feed
-- In-built sitemap
+## Elsewhere
 
-Learn more about it [here](https://github.com/amitmerchant1990/reverie) on how to get started.
+<ul class="link-list">
+  {% assign links = site.data.profile.links %}
+  {% if links.github %}<li><a href="{{ links.github }}">GitHub</a></li>{% endif %}
+  {% if links.google_scholar %}<li><a href="{{ links.google_scholar }}">Google Scholar</a></li>{% endif %}
+  {% if links.linkedin %}<li><a href="{{ links.linkedin }}">LinkedIn</a></li>{% endif %}
+  {% if links.cv %}<li><a href="{{ links.cv }}">CV</a></li>{% endif %}
+  {% if links.email %}<li><a href="mailto:{{ links.email }}">Email</a></li>{% endif %}
+</ul>

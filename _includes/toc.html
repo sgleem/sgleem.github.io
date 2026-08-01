@@ -1,0 +1,8 @@
+<nav class="toc" aria-labelledby="toc-heading">
+  <p id="toc-heading" class="toc-title">Contents</p>
+  <ol>
+    {% for item in include.items %}
+      <li><a href="#{{ item.id }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ol>
+</nav>

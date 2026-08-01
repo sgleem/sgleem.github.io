@@ -3,37 +3,105 @@ layout: default
 ---
 
 <article class="post detailed">
-  <h1>{{ page.title }}</h1>
+  {% assign category = page.category %}
+  {% unless category %}
+    {% assign category = page.categories | first %}
+  {% endunless %}
 
-  <div>
-    <p class="author_title">{{site.author}}  ·  {{ page.date | date: "%B %e, %Y" }}</p>
-    {% if page.last_modified_at %}
-    <p class="author_title" datetime="{{ page.last_modified_at | date_to_xmlschema }}">(Updated: {{ page.last_modified_at | date: "%b %-d, %Y" }})</p>
+  <header class="post-header">
+    {% if category %}
+      <a class="eyebrow" href="{{ site.baseurl }}/categories/#{{ category | slugify }}">{{ category }}</a>
     {% endif %}
-    <div class="post-tags">
-      {% if post %}
-        {% assign categories = post.categories %}
-      {% else %}
-        {% assign categories = page.categories %}
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+    {% endif %}
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span aria-hidden="true">·</span>
+      {% include reading-time.html content=content %}
+      {% if page.last_modified_at %}
+        <span aria-hidden="true">·</span>
+        <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">Updated {{ page.last_modified_at | date: "%B %-d, %Y" }}</time>
       {% endif %}
-      {% for category in categories %}
-        <a href="{{site.baseurl}}/categories/#{{category|slugize}}">{{category}}</a>
-        {% unless forloop.last %}&nbsp;{% endunless %}
-      {% endfor %}
     </div>
-  </div>
-    
+    {% if page.tags %}
+      <ul class="taxonomy" aria-label="Tags">
+        {% for tag in page.tags %}
+          <li><span>{{ tag }}</span></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </header>
+
+  {% if page.toc and page.toc_items %}
+    {% include toc.html items=page.toc_items %}
+  {% endif %}
+
   <div class="entry">
     {{ content }}
   </div>
 
-  <div>
-    <p><span class="share-box">Share:</span> <a href="http://twitter.com/share?text={{ page.title }}&url={{site.url}}{{page.url}}" target="_blank">Twitter</a>, <a href="https://www.facebook.com/sharer.php?u={{site.url}}{{page.url}}" target="_blank">Facebook</a></p>
-  </div>
+  <nav class="post-navigation" aria-label="Post navigation">
+    {% if page.previous %}
+      <a href="{{ site.baseurl }}{{ page.previous.url }}">
+        <span>Previous</span>
+        {{ page.previous.title }}
+      </a>
+    {% endif %}
+    {% if page.next %}
+      <a href="{{ site.baseurl }}{{ page.next.url }}">
+        <span>Next</span>
+        {{ page.next.title }}
+      </a>
+    {% endif %}
+  </nav>
 
-  <!--<div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>-->
-
-  {% include disqus.html %}
+  {% assign related_count = 0 %}
+  {% if page.tags or page.categories %}
+    <section class="related-posts" aria-labelledby="related-heading">
+      <h2 id="related-heading">Related writing</h2>
+      {% for candidate in site.posts %}
+        {% if candidate.url != page.url and related_count < 3 %}
+          {% assign shares_category = false %}
+          {% assign shares_tag = false %}
+          {% if page.categories and candidate.categories %}
+            {% for candidate_category in candidate.categories %}
+              {% if page.categories contains candidate_category %}
+                {% assign shares_category = true %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% if page.tags and candidate.tags %}
+            {% for candidate_tag in candidate.tags %}
+              {% if page.tags contains candidate_tag %}
+                {% assign shares_tag = true %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          {% if shares_category or shares_tag %}
+            {% include post-card.html post=candidate compact=true %}
+            {% assign related_count = related_count | plus: 1 %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% if related_count == 0 %}
+        <p class="muted">More related writing will appear as the archive grows.</p>
+      {% endif %}
+    </section>
+  {% endif %}
 </article>
+
+{% if page.math %}
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+{% endif %}

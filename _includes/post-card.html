@@ -1,0 +1,18 @@
+{% assign category = include.post.category %}
+{% unless category %}
+  {% assign category = include.post.categories | first %}
+{% endunless %}
+{% assign summary = include.post.description %}
+{% unless summary %}
+  {% assign summary = include.post.excerpt | strip_html | strip_newlines | strip %}
+{% endunless %}
+<article class="post-card{% if include.compact %} post-card-compact{% endif %}">
+  <div class="post-card-meta">
+    {% if category %}<a href="{{ site.baseurl }}/categories/#{{ category | slugify }}">{{ category }}</a>{% endif %}
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
+    <span aria-hidden="true">·</span>
+    {% include reading-time.html post=include.post %}
+  </div>
+  <h3><a href="{{ site.baseurl }}{{ include.post.url }}">{{ include.post.title }}</a></h3>
+  {% if summary %}<p>{{ summary | truncate: 220 }}</p>{% endif %}
+</article>
