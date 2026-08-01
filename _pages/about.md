@@ -9,7 +9,7 @@ description: About Seong-Gyun Leem.
 
 <p>I write about the technical and human questions that arise while leveraging intelligent systems to change our lives, alongside personal reflections on living in the era of AI agents. My interests include model evaluation, real-world data, speech and multimodal systems, AI literacy and education, and AI governance. </p>
 
-<p>This site is a place for durable research essays, practical notes, paper discussions, and personal essays. Detailed employment and publication history can be found in the <a href="{{ site.baseurl }}/publications/">publication archive</a> and linked CV when those materials are added.</p>
+<p>This site is a place for durable research essays, practical notes, paper discussions, and personal essays. Detailed publication history can be found in the <a href="{{ site.baseurl }}/publications/">publication archive</a>.</p>
 
 ## Elsewhere
 
