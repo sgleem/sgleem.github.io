@@ -9,5 +9,6 @@ node_modules
 package.json
 *.gem
 *.gemspec
+*.bak
 .jekyll-cache
 vendor

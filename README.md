@@ -36,3 +36,13 @@ Use tags for narrower topics. Set `featured: true` for essays that should appear
 - `_pages/` contains the durable Writing, Publications, About, Archive, Categories, and Search pages.
 
 The site keeps the default GitHub Pages build path and does not require a JavaScript framework or a database.
+
+## Updating publications
+
+Google Scholar does not provide a supported bulk-download API. From your public profile, select the articles, choose **Export**, and download a CSV or BibTeX file. Then run:
+
+```bash
+python3 scripts/import_scholar.py ~/Downloads/scholar.csv --backup --force
+```
+
+Use `--format bibtex` for a BibTeX export. Add `--selected` if the imported papers should also appear in the homepage's selected-publications section. Review the generated `_data/publications.yml` before committing it.
