@@ -381,36 +381,6 @@ li + li {
   color: var(--muted);
 }
 
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.research-area {
-  display: block;
-  padding: 1.25rem;
-  border: 1px solid var(--border);
-  color: var(--text);
-  text-decoration: none;
-}
-
-.research-area:hover,
-.research-area:focus {
-  border-color: var(--accent);
-}
-
-.research-area h3 {
-  margin: 0 0 .5rem;
-}
-
-.research-area p {
-  margin: 0;
-  color: var(--muted);
-  font-size: .95rem;
-}
-
 .page {
   max-width: 760px;
 }
@@ -691,10 +661,6 @@ li + li {
 
   .home-intro {
     padding-top: 1rem;
-  }
-
-  .research-grid {
-    grid-template-columns: 1fr;
   }
 
   .archive-list p {

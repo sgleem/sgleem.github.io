@@ -31,9 +31,8 @@ Use tags for narrower topics. Set `featured: true` for essays that should appear
 ## Site content
 
 - `_data/profile.yml` stores the short profile and external links.
-- `_data/research_areas.yml` stores the research-area descriptions.
 - `_data/publications.yml` stores structured publication records.
 - `_data/navigation.yml` controls the global navigation.
-- `_pages/` contains the durable Writing, Research, Publications, About, Archive, Categories, and Search pages.
+- `_pages/` contains the durable Writing, Publications, About, Archive, Categories, and Search pages.
 
 The site keeps the default GitHub Pages build path and does not require a JavaScript framework or a database.

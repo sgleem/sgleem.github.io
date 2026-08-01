@@ -8,7 +8,7 @@ layout: default
     <p class="eyebrow">{{ profile.role }}</p>
     <h1>{{ profile.name }}</h1>
     <p class="home-lede">{{ profile.intro }}</p>
-    <p class="home-links"><a href="{{ site.baseurl }}/writing/">Read the writing</a> <span aria-hidden="true">·</span> <a href="{{ site.baseurl }}/research/">Explore the research</a></p>
+    <p class="home-links"><a href="{{ site.baseurl }}/writing/">Read the writing</a></p>
   </section>
 
   {% assign featured_posts = site.posts | where: "featured", true %}
@@ -41,21 +41,6 @@ layout: default
     {% else %}
       <p class="empty-state">The first essays and notes will appear here.</p>
     {% endif %}
-  </section>
-
-  <section class="home-section" aria-labelledby="areas-heading">
-    <div class="section-heading">
-      <h2 id="areas-heading">Research areas</h2>
-      <a href="{{ site.baseurl }}/research/">Research overview</a>
-    </div>
-    <div class="research-grid">
-      {% for area in site.data.research_areas %}
-        <a class="research-area" href="{{ site.baseurl }}/research/#{{ area.name | slugify }}">
-          <h3>{{ area.name }}</h3>
-          <p>{{ area.description }}</p>
-        </a>
-      {% endfor %}
-    </div>
   </section>
 
   {% assign selected_publications = site.data.publications | where: "selected", true %}
