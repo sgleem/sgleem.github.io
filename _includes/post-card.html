@@ -8,11 +8,11 @@
 {% endunless %}
 <article class="post-card{% if include.compact %} post-card-compact{% endif %}">
   <div class="post-card-meta">
-    {% if category %}<a href="{{ site.baseurl }}/categories/#{{ category | slugify }}">{{ category }}</a>{% endif %}
-    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
+    {% if category %}<a class="tag" href="{{ site.baseurl }}/categories/#{{ category | slugify }}">{{ category }}</a>{% endif %}
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%b %-d, %Y" }}</time>
     <span aria-hidden="true">·</span>
     {% include reading-time.html post=include.post %}
   </div>
-  <h3><a href="{{ site.baseurl }}{{ include.post.url }}">{{ include.post.title }}</a></h3>
+  <h3><a class="post-card-link" href="{{ site.baseurl }}{{ include.post.url }}">{{ include.post.title }}</a></h3>
   {% if summary %}<p>{{ summary | truncate: 220 }}</p>{% endif %}
 </article>

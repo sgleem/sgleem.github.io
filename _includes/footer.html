@@ -1,14 +1,14 @@
 <footer class="site-footer">
   <div class="container site-footer-inner">
+    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}</p>
     <nav class="footer-links" aria-label="Professional links">
       {% assign links = site.data.profile.links %}
       {% if links.github %}<a href="{{ links.github }}" target="_blank" rel="noopener">GitHub</a>{% endif %}
-      {% if links.google_scholar %}<a href="{{ links.google_scholar }}" target="_blank" rel="noopener">Google Scholar</a>{% endif %}
+      {% if links.google_scholar %}<a href="{{ links.google_scholar }}" target="_blank" rel="noopener">Scholar</a>{% endif %}
       {% if links.linkedin %}<a href="{{ links.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
       {% if links.cv %}<a href="{{ links.cv }}">CV</a>{% endif %}
       {% if links.email %}<a href="mailto:{{ links.email }}">Email</a>{% endif %}
       <a href="{{ site.baseurl }}/feed.xml">RSS</a>
     </nav>
-    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}</p>
   </div>
 </footer>

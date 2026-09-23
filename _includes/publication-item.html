@@ -1,4 +1,5 @@
 <article class="publication-item">
+  <p class="publication-venue">{{ include.publication.venue }}{% if include.publication.year %} · {{ include.publication.year }}{% endif %}</p>
   <h3>{{ include.publication.title }}</h3>
   {% if include.publication.authors %}
     <p class="publication-authors">
@@ -7,10 +8,11 @@
       {% endfor %}
     </p>
   {% endif %}
-  <p class="publication-venue">{{ include.publication.venue }}{% if include.publication.year %}, {{ include.publication.year }}{% endif %}</p>
-  <p class="publication-links">
-    {% if include.publication.paper_url %}<a href="{{ include.publication.paper_url }}">Paper</a>{% endif %}
-    {% if include.publication.code_url %}<a href="{{ include.publication.code_url }}">Code</a>{% endif %}
-    {% if include.publication.project_url %}<a href="{{ include.publication.project_url }}">Project</a>{% endif %}
-  </p>
+  {% if include.publication.paper_url or include.publication.code_url or include.publication.project_url %}
+    <p class="publication-links">
+      {% if include.publication.paper_url %}<a class="chip" href="{{ include.publication.paper_url }}">Paper</a>{% endif %}
+      {% if include.publication.code_url %}<a class="chip" href="{{ include.publication.code_url }}">Code</a>{% endif %}
+      {% if include.publication.project_url %}<a class="chip" href="{{ include.publication.project_url }}">Project</a>{% endif %}
+    </p>
+  {% endif %}
 </article>
